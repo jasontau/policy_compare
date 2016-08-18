@@ -1,0 +1,75 @@
+code,name,segment
+1442,Construction - Sand & Gravel,Mining
+1521,General Contractors - Single-Family Houses,Construction
+1522,General Contractors - Residential Buildings,Construction
+1541,General Contractors - Industrial,Construction
+1542,General Contractors - Non-Residential and Warehouses,Construction
+1611,Highway and Street Construction,Construction
+1630,Land Grading,Construction
+1711,"Plumbing, Heating and Air-Conditioning",Construction
+1721,Painting and Wallpaper,Construction
+1741,"Masonry, Stone-setting",Construction
+1742,"Plastering, Drywall, Insulation",Construction
+1743,"Tile, Marble, Mosaic Work",Construction
+1751,Carpentry Contractor,Construction
+1752,"Floor Laying and Other Floor Work, NOC",Construction
+1761,"Roofing, Siding, Sheet Metal",Construction
+1771,Concrete Work,Construction
+1791,Structural Steel Erection,Construction
+2011,Meat Packing,Manufacturing
+2013,Sausages and Other Prepared Meats,Manufacturing
+2022,"Natural, Processed and Imitation Cheese",Manufacturing
+2024,Ice Cream and Frozen Desserts,Manufacturing
+2051,Bakeries (Commercial & Wholesale),Manufacturing
+2064,Candy and Other Confectionary Products,Manufacturing
+2741,Misc. Publishing,Manufacturing
+2759,Commercial Printing NOC,Manufacturing
+2841,Soap and Detergent Mfg,Manufacturing
+4212,"Trucking, Local without Storage",Transportation
+4226,Special Warehousing NOC,Transportation
+4724,Travel Agencies,Business Services & Retail
+4731,Freight Brokers,Business Services & Retail
+5013,Automobile Parts,Business Services & Retail
+5012,Automobiles and Other Vehicles,Business Services & Retail
+5014,Tires and Tubes,Business Services & Retail
+5044,Office Equipment,Business Services & Retail
+5045,Computer and Peripheral Equipment and Software,Business Services & Retail
+5046,Commercial Equipment NOC,Business Services & Retail
+5046,"Medical, Dental, Hospital Equipment",Business Services & Retail
+5049,Professional Equipment NOC,Business Services & Retail
+5064,Electrical Appliances,Business Services & Retail
+5074,Plumbing Supplies,Business Services & Retail
+5092,"Toys, Hobby Goods",Business Services & Retail
+5111,"Stationary, Printing and other Paper",Business Services & Retail
+5441,"Candy, Nut and Confectionary Stores",Business Services & Retail
+5451,Dairy Products Store,Business Services & Retail
+5461,Retail Bakeries,Business Services & Retail
+5499,"Food Stores, NOC",Business Services & Retail
+5541,"Gas Station, incl. Convenience Store",Business Services & Retail
+5611,Men’s Clothing Store,Business Services & Retail
+5621,Women’s Clothing Store,Business Services & Retail
+5632,Women's Accessory and Specialty Store,Business Services & Retail
+5641,Children and Infants’ Clothing Store,Business Services & Retail
+5651,Family Clothing Store,Business Services & Retail
+5661,Shoe Stores,Business Services & Retail
+5741,"Drapery, Curtain, Upholstery Store",Business Services & Retail
+5734,Computer Store,Business Services & Retail
+5812,Restaurants (Licensed),Business Services & Retail
+5921,Liquor Store,Business Services & Retail
+5941,Sporting Goods,Business Services & Retail
+5992,Florists,Business Services & Retail
+5993,Tobacconists Retail,Business Services & Retail
+6411,"Insurance Agents, Brokers",Business Services & Retail
+6512,Commercial Buildings,Realty
+6513,Apartment Buildings,Realty
+6514,Rented Dwellings,Realty
+6531,Real Estate Agents and Managers,Business Services & Retail
+7011,Hotels and Motels,Business Services & Retail
+7349,Building Cleaning and Maintenance NOC,Business Services & Retail
+7371,Computer Programming Services,Business Services & Retail
+7389,Business Services NOC,Business Services & Retail
+8021,Dentists,Business Services & Retail
+8011,Doctors,Business Services & Retail
+8041,Chiropractors,Business Services & Retail
+8043,Podiatrists,Business Services & Retail
+,,
