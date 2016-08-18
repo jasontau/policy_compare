@@ -8,10 +8,11 @@
 
 require 'csv'
 
-CSV.foreach("app/assets/csv/sic.csv", headers: true) do |row|
-  Sic.create code: row["code"], name: row["name"], segment: row["segment"]
-end
+# CSV.foreach("app/assets/csv/sic.csv", headers: true) do |row|
+#   Sic.create code: row["code"], name: row["name"], segment: row["segment"]
+# end
 
 CSV.foreach("app/assets/csv/insurer.csv", headers: true) do |row|
-  Sic.create name: row["name"], am_best_rating: row["am_best_rating"]
+  # p "seeding #{row} -- #{row["name"]}, #{row["rating"]}"
+  Insurer.create name: row["name"], am_best_rating: row["rating"]
 end

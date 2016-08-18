@@ -1,4 +1,4 @@
-name, am_best_rating
-"Fintact Insurance", "A+"
-"Napoleon Assurance Mutuelle", "B-"
-"Peasant Moon Insurance", "B"
+name,rating
+Fintact Insurance,A+
+Napoleon Assurance Mutuelle,B-
+Peasant Moon Insurance,B
