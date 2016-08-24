@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 20160822175309) do
   create_table "section_aliases", force: :cascade do |t|
     t.string   "name"
     t.integer  "section_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "insurers_id"
-    t.index ["insurers_id"], name: "index_section_aliases_on_insurers_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "insurer_id"
+    t.index ["insurer_id"], name: "index_section_aliases_on_insurer_id", using: :btree
     t.index ["section_id"], name: "index_section_aliases_on_section_id", using: :btree
   end
 
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160822175309) do
     t.index ["insurer_id"], name: "index_wordings_on_insurer_id", using: :btree
   end
 
-  add_foreign_key "section_aliases", "insurers", column: "insurers_id"
+  add_foreign_key "section_aliases", "insurers"
   add_foreign_key "section_aliases", "sections"
   add_foreign_key "wordings", "insurers"
 end

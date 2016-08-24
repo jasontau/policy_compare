@@ -20,6 +20,8 @@ require 'csv'
 #   Section.create name: row["name"]
 # end
 
-CSV.foreach("app/assets/csv/section_alias.csv", headers: true) do |row|
-  SectionAlias.create name: row["name"]
+CSV.foreach("app/assets/csv/section_aliases.csv", headers: true) do |row|
+  SectionAlias.create name: row["name"],
+    section: Section.find_by!(name: row["section"]),
+    insurer: Insurer.find_by!(name: row["insurer"])
 end
