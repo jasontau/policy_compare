@@ -3,4 +3,5 @@ class Insurer < ApplicationRecord
   validates :am_best_rating, presence: true
 
   has_many :wordings
+  has_many :section_aliases
 end

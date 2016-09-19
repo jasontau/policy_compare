@@ -1,6 +1,6 @@
 require 'csv'
 
-def get_insurer(id)
+def get_insurer(name)
   array = []
   ar = SectionAlias.where("insurer_id = ?", id.to_s)
   ar.each do |x| array << x.name end
