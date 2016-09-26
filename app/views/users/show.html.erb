@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @user.name %>
+  <strong>First:</strong>
+  <%= @user.first_name %>
+</p>
+<p>
+  <strong>Last:</strong>
+  <%= @user.last_name %>
 </p>
 
 <p>
@@ -23,21 +27,6 @@
 <p>
   <strong>Phone:</strong>
   <%= @user.phone %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
-<p>
-  <strong>Password confirmation:</strong>
-  <%= @user.password_confirmation %>
-</p>
-
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
