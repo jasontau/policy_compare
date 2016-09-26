@@ -25,13 +25,36 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Database
+gem 'carrierwave', '>= 1.0.0.beta', '<2.0'
+gem "mini_magick"
+
+# Bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'font-awesome-sass', '~>4.2.0'
+gem 'font-awesome-rails'
+
+# Forms
+gem 'simple_form'
+gem 'nested_form'
+
+# Client
+gem 'rack-cors', :require => 'rack/cors'
+
+# Utility
+gem 'friendly_id'
+gem 'cancancan', '~> 1.10'
+
+# Front End
+gem 'kaminari'
+gem 'chosen-rails'
+gem 'compass-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
