@@ -25,3 +25,11 @@ CSV.foreach("app/assets/csv/section_aliases.csv", headers: true) do |row|
     section: Section.find_by!(name: row["section"]),
     insurer: Insurer.find_by!(name: row["insurer"])
 end
+
+CSV.foreach("app/assets/csv/wordings_fintact.csv", headers: true) do |row|
+  puts "#{row["form"]} | #{row["name"]} | #{row["insurer"]} | #{row["section"]} | #{row["equivalent_wording_id"]}"
+  Wording.create form: row["form"],
+    name: row["name"],
+    verbiage: row["verbiage"],
+    insurer: Insurer.find_by!(name: row["insurer"])
+end
