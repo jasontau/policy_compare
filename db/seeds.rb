@@ -8,6 +8,8 @@
 
 require 'csv'
 
+CUSTOMERS_TO_CREATE = 100
+
 CSV.foreach("app/assets/csv/sic.csv", headers: true) do |row|
   Sic.create code: row["code"], name: row["name"], segment: row["segment"]
 end
@@ -32,4 +34,19 @@ CSV.foreach("app/assets/csv/wordings_fintact.csv", headers: true) do |row|
     name: row["name"],
     verbiage: row["verbiage"],
     insurer: Insurer.find_by!(name: row["insurer"])
+end
+
+CUSTOMERS_TO_CREATE.times do
+  if Customer.count < CUSTOMERS_TO_CREATE
+    customer_name = ""
+    case rand(1)
+    when 0
+      customer_name = "#{Faker::Name.name} o/a #{Faker::Company.name}"
+    when 1
+      customer_name = "#{Faker::Company.name} #{Faker::Company.suffix}"
+    end
+    Customer.create name: customer_name,
+                    address: "#{Faker::Address.street_name}, #{Faker::Address.city}, #{Faker::Address.postcode}",
+                    phone: Faker::PhoneNumber.phone_number
+  end
 end
