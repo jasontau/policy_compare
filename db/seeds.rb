@@ -36,6 +36,10 @@ CSV.foreach("app/assets/csv/wordings_fintact.csv", headers: true) do |row|
     insurer: Insurer.find_by!(name: row["insurer"])
 end
 
+["New", "Open", "Bound", "Closed"].each do |status|
+  Status.create name: status
+end
+
 CUSTOMERS_TO_CREATE.times do
   if Customer.count < CUSTOMERS_TO_CREATE
     customer_name = ""
