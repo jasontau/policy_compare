@@ -9,6 +9,7 @@
 require 'csv'
 
 CUSTOMERS_TO_CREATE = 100
+ACCOUNTS_TO_CREATE = 300
 
 CSV.foreach("app/assets/csv/sic.csv", headers: true) do |row|
   Sic.create code: row["code"], name: row["name"], segment: row["segment"]
@@ -40,7 +41,7 @@ end
   Status.create name: status
 end
 
-CUSTOMERS_TO_CREATE.times do
+CUSTOMERS_TO_CREATE.times do |i|
   if Customer.count < CUSTOMERS_TO_CREATE
     customer_name = ""
     case rand(1)
@@ -49,8 +50,18 @@ CUSTOMERS_TO_CREATE.times do
     when 1
       customer_name = "#{Faker::Company.name} #{Faker::Company.suffix}"
     end
-    Customer.create name: customer_name,
+    Customer.create name: customer_name + i,
                     address: "#{Faker::Address.street_name}, #{Faker::Address.city}, #{Faker::Address.postcode}",
                     phone: Faker::PhoneNumber.phone_number
+  end
+end
+
+ACCOUNTS_TO_CREATE.times do |i|
+  if Account.count < ACCOUNTS_TO_CREATE
+    sic = Sic.order("RANDOM()").first
+    Account.create  customer: Customer.order("RANDOM()").first,
+                    sic: sic,
+                    status: Status.order("RANDOM()").first,
+                    description: sic.name
   end
 end
