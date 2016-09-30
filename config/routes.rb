@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users
+  resources :accounts
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
   end
