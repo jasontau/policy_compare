@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928213809) do
+ActiveRecord::Schema.define(version: 20160930205234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 20160928213809) do
     t.string   "am_best_rating"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "quotes", force: :cascade do |t|
+    t.string   "pdf"
+    t.string   "csv"
+    t.integer  "insurer_id"
+    t.integer  "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_quotes_on_account_id", using: :btree
+    t.index ["insurer_id"], name: "index_quotes_on_insurer_id", using: :btree
   end
 
   create_table "section_aliases", force: :cascade do |t|
@@ -98,6 +109,8 @@ ActiveRecord::Schema.define(version: 20160928213809) do
   add_foreign_key "accounts", "customers"
   add_foreign_key "accounts", "sics"
   add_foreign_key "accounts", "statuses"
+  add_foreign_key "quotes", "accounts"
+  add_foreign_key "quotes", "insurers"
   add_foreign_key "section_aliases", "insurers"
   add_foreign_key "section_aliases", "sections"
   add_foreign_key "wordings", "insurers"

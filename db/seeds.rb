@@ -37,6 +37,14 @@ CSV.foreach("app/assets/csv/wordings_fintact.csv", headers: true) do |row|
     insurer: Insurer.find_by!(name: row["insurer"])
 end
 
+CSV.foreach("app/assets/csv/wordings_peasant_moon.csv", headers: true) do |row|
+  puts "#{row["form"]} | #{row["name"]} | #{row["insurer"]} | #{row["section"]} | #{row["equivalent_wording_id"]}"
+  Wording.create form: row["form"],
+    name: row["name"],
+    verbiage: row["verbiage"],
+    insurer: Insurer.find_by!(name: row["insurer"])
+end
+
 ["New", "Open", "Bound", "Closed"].each do |status|
   Status.create name: status
 end

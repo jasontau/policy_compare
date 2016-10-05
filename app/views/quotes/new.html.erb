@@ -1,0 +1,28 @@
+<h1>New Quote</h1>
+
+<%= simple_form_for [@account, @quote] do |f| %>
+  <% if @quote.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@quote.errors.count, "error") %> prohibited this quote from being saved:</h2>
+
+      <ul>
+      <% @quote.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.input :pdf %>
+  <%= f.input :csv %>
+  <%= f.button :submit %>
+<% end %>
+<hr>
+<div>
+  <div><%= @test[:policy] %></div>
+  <div><%= @test[:insurer] %></div>
+  <h3>Wordings</h3>
+  <div><% @test[:wordings].each do |wording| %>
+    <div><%= wording %></div>
+  <% end %></div>
+
+</div>
