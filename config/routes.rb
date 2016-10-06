@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   resources :accounts do
-    resources :quotes, only: [:new, :create]
+    resources :quotes, only: [:new, :create, :edit]
   end
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection

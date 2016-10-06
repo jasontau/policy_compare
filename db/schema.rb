@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930205234) do
+ActiveRecord::Schema.define(version: 20161006015312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20160930205234) do
     t.index ["customer_id"], name: "index_accounts_on_customer_id", using: :btree
     t.index ["sic_id"], name: "index_accounts_on_sic_id", using: :btree
     t.index ["status_id"], name: "index_accounts_on_status_id", using: :btree
+  end
+
+  create_table "coverages", force: :cascade do |t|
+    t.integer  "deductible"
+    t.integer  "deductible_percent"
+    t.integer  "limit"
+    t.integer  "quote_id"
+    t.integer  "wording_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["quote_id"], name: "index_coverages_on_quote_id", using: :btree
+    t.index ["wording_id"], name: "index_coverages_on_wording_id", using: :btree
   end
 
   create_table "customers", force: :cascade do |t|
@@ -49,6 +61,7 @@ ActiveRecord::Schema.define(version: 20160930205234) do
     t.integer  "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "policy"
     t.index ["account_id"], name: "index_quotes_on_account_id", using: :btree
     t.index ["insurer_id"], name: "index_quotes_on_insurer_id", using: :btree
   end
@@ -109,6 +122,8 @@ ActiveRecord::Schema.define(version: 20160930205234) do
   add_foreign_key "accounts", "customers"
   add_foreign_key "accounts", "sics"
   add_foreign_key "accounts", "statuses"
+  add_foreign_key "coverages", "quotes"
+  add_foreign_key "coverages", "wordings"
   add_foreign_key "quotes", "accounts"
   add_foreign_key "quotes", "insurers"
   add_foreign_key "section_aliases", "insurers"

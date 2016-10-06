@@ -5,11 +5,26 @@ class QuotesController < ApplicationController
 
   def new
     @quote = Quote.new
-    @test = parse Quote.find 4
+    # @test = parse Quote.find 4
   end
 
+  # upload the pdf/csv raw data
   def create
     @quote = Quote.new(quote_params)
+    @quote.account = @account
+
+    @test = parse @quote
+    @quote.policy = @test[:policy]
+    @quote.insurer_id = @test[:insurer]
+
+    coverage_array = []
+    @test[:coverages].each do |x|
+      coverage_array << Coverage.new(x)
+    end
+
+    @quote.coverages = coverage_array
+
+    # render :new
 
     respond_to do |format|
       if @quote.save
@@ -20,6 +35,11 @@ class QuotesController < ApplicationController
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # extract and interpret useful info into coverages
+  def edit
+
   end
 
   private

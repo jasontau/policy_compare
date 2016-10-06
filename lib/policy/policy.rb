@@ -5,12 +5,9 @@ module Policy
     info = get_insurer(quote) # TODO: make separate methods
     result = {
       policy: info[:get_policy_number],
-      insurer: info[:get_insurer],
-      wordings: get_wordings(quote, info[:get_insurer])
+      insurer: Insurer.find_by_name(info[:get_insurer]).id,
+      coverages: get_wordings(quote, info[:get_insurer])
     }
-    # get_insurer(quote).each do |x, v|
-    #   result[x] = v
-    # end
   end
 
   private
@@ -38,14 +35,15 @@ module Policy
     wordings = []
     result = []
     Wording.where("insurer_id = ?", Insurer.find_by_name(insurer).id).each do |record|
-      wordings << record.name
-    end
-    wordings.each do |wording|
+      # wordings << record.name
       catch :found_wording do
         CSV.foreach("public/#{quote.csv}", headers: false) do |row|
           row.each do |value|
-            if value.present? && value.include?(wording)
-              result << row
+            if value.present? && value.include?(record.name)
+              coverage = parse_row(row, insurer)
+              coverage[:quote_id] = quote.id
+              coverage[:wording_id] = record.id
+              result << coverage
               throw :found_wording
             end
           end
@@ -54,14 +52,28 @@ module Policy
       end
     end
     result
-
-
-    # result = []
-    # CSV.foreach("public/#{quote.csv}", headers: false) do |row|
-    #   row.each do |value|
-    #   end
-    #   result << row
-    # end
-    # result
   end
+end
+
+# gets deductible and limit info
+def parse_row(row, insurer)
+  # TODO: move to database
+  insurer_templates = {
+    "Fintact Insurance"       => { deductible:2, limit:3, ded_delimiter: '/'},
+    "Peasant Moon Insurance"  => { deductible:3, limit:4, ded_delimiter: 'minimum'},
+  }
+
+  result = {}
+  i = insurer_templates[insurer]
+
+  if row[i[:limit]].present?
+    limit = row[i[:limit]].gsub( /\$|\,|\%/, '').to_i
+    result[:limit] = limit if limit > 0
+  end
+
+  ded = row[i[:deductible]].split(i[:ded_delimiter]).map {|d| d.gsub( /\$|\,|\%/, '').to_i} if row[i[:deductible]]
+  #TODO: remove hack - small numbers are always % deductibles
+  ded.each do |v| v > 99 ? result[:deductible] = v : result[:deductible_percent] = v end if ded
+
+  result
 end
