@@ -11,6 +11,7 @@ require 'csv'
 CUSTOMERS_TO_CREATE = 100
 ACCOUNTS_TO_CREATE = 300
 
+# Populate Insurer/Wording Data
 CSV.foreach("app/assets/csv/sic.csv", headers: true) do |row|
   Sic.create code: row["code"], name: row["name"], segment: row["segment"]
 end
@@ -37,10 +38,19 @@ CSV.foreach("app/assets/csv/wordings_fintact.csv", headers: true) do |row|
     insurer: Insurer.find_by!(name: row["insurer"])
 end
 
+CSV.foreach("app/assets/csv/wordings_peasant_moon.csv", headers: true) do |row|
+  puts "#{row["form"]} | #{row["name"]} | #{row["insurer"]} | #{row["section"]} | #{row["equivalent_wording_id"]}"
+  Wording.create form: row["form"],
+    name: row["name"],
+    verbiage: row["verbiage"],
+    insurer: Insurer.find_by!(name: row["insurer"])
+end
+
 ["New", "Open", "Bound", "Closed"].each do |status|
   Status.create name: status
 end
 
+# Create test data
 CUSTOMERS_TO_CREATE.times do |i|
   if Customer.count < CUSTOMERS_TO_CREATE
     customer_name = ""

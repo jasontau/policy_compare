@@ -7,18 +7,26 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @account.customer %>
+  <%= @account.customer.name %>
 </p>
 
 <p>
   <strong>Sic:</strong>
-  <%= @account.sic %>
+  <%= @account.sic.code %> - <%= @account.sic.name %>
 </p>
 
 <p>
   <strong>Status:</strong>
-  <%= @account.status %>
+  <%= @account.status.name %>
 </p>
 
+<hr>
+
+<h3>Quotes</h3>
+<% @account.quotes.each do |quote| %>
+  <p><span class="glyphicon glyphicon-file" style="color:red; font-size: 2.0em"></span></p>
+<% end %>
+
 <%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'New Quote', new_account_quote_path(@account) %> |
 <%= link_to 'Back', accounts_path %>
