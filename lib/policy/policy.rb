@@ -60,7 +60,7 @@ def parse_row(row, insurer)
   # TODO: move to database
   insurer_templates = {
     "Fintact Insurance"       => { deductible:2, limit:3, ded_delimiter: '/'},
-    "Peasant Moon Insurance"  => { deductible:3, limit:4, ded_delimiter: 'minimum'},
+    "Peasant Moon Insurance"  => { deductible:2, limit:4, ded_delimiter: 'minimum'},
   }
 
   result = {}

@@ -5,7 +5,6 @@ class QuotesController < ApplicationController
 
   def new
     @quote = Quote.new
-    # @test = parse Quote.find 4
   end
 
   # upload the pdf/csv raw data
@@ -24,16 +23,10 @@ class QuotesController < ApplicationController
 
     @quote.coverages = coverage_array
 
-    # render :new
-
-    respond_to do |format|
-      if @quote.save
-        format.html { redirect_to @account, notice: 'Quote was successfully created.' }
-        format.json { render :show, status: :created, location: @quote }
-      else
-        format.html { render :new }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
-      end
+    if @quote.save
+      redirect_to @account, notice: 'Quote was successfully created.'
+    else
+      render :new
     end
   end
 
