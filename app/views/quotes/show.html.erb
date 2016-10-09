@@ -1,0 +1,19 @@
+<h1>Policy <%= @quote.policy %></h1>
+
+<h3>Coverages</h3>
+<table>
+  <tr>
+    <th>Form</th>
+    <th>Name</th>
+    <th>Deductible</th>
+    <th>Limit</th>
+  </tr>
+  <% @quote.coverages.order('id').each do |coverage| %>
+    <tr>
+      <td><div><%= coverage.wording_form %></div></td>
+      <td><div><%= coverage.wording_name %></div></td>
+      <td><div><%= coverage.get_deductible %></div></td>
+      <td><div><%= coverage.limit %></div></td>
+    </tr>
+  <% end %>
+</table>
