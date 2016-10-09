@@ -10,6 +10,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
+    @wordingalias = WordingAlias.all
   end
 
   # GET /accounts/new

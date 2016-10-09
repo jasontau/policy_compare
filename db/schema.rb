@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006015312) do
+ActiveRecord::Schema.define(version: 20161007033029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,14 +109,26 @@ ActiveRecord::Schema.define(version: 20161006015312) do
     t.string   "last_name"
   end
 
+  create_table "wording_aliases", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "section_id"
+    t.text     "description"
+    t.string   "irmi"
+    t.index ["section_id"], name: "index_wording_aliases_on_section_id", using: :btree
+  end
+
   create_table "wordings", force: :cascade do |t|
     t.string   "form"
     t.string   "name"
     t.text     "verbiage"
     t.integer  "insurer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "wording_alias_id"
     t.index ["insurer_id"], name: "index_wordings_on_insurer_id", using: :btree
+    t.index ["wording_alias_id"], name: "index_wordings_on_wording_alias_id", using: :btree
   end
 
   add_foreign_key "accounts", "customers"
@@ -128,5 +140,7 @@ ActiveRecord::Schema.define(version: 20161006015312) do
   add_foreign_key "quotes", "insurers"
   add_foreign_key "section_aliases", "insurers"
   add_foreign_key "section_aliases", "sections"
+  add_foreign_key "wording_aliases", "sections"
   add_foreign_key "wordings", "insurers"
+  add_foreign_key "wordings", "wording_aliases"
 end

@@ -22,10 +22,39 @@
 
 <hr>
 
-<h3>Quotes</h3>
-<% @account.quotes.each do |quote| %>
-  <p><span class="glyphicon glyphicon-file" style="color:red; font-size: 2.0em"></span></p>
-<% end %>
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#quotes">Quotes</a></li>
+  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+  <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu 1
+    <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a data-toggle="tab" href="#submenu1-1">Submenu 1-1</a></li>
+    </ul>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div id="quotes" class="tab-pane fade in active">
+    <% @account.quotes.each do |quote| %>
+      <div><%= link_to "", account_quote_path(@account, quote), class: "glyphicon glyphicon-file", style: "color:red; font-size: 2.0em"%></span></div>
+    <% end %>
+  </div>
+  <div id="menu1" class="tab-pane fade">
+    <h3>Compare</h3>
+    <p>Some content in menu 1.</p>
+  </div>
+  <div id="menu2" class="tab-pane fade">
+    <h3>Menu 2</h3>
+    <p>Some content in menu 2.</p>
+  </div>
+  <div id="submenu1-1" class="tab-pane fade">
+    <%= render "compare" %>
+  </div>
+</div>
+
+
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'New Quote', new_account_quote_path(@account) %> |

@@ -1,0 +1,26 @@
+<!--
+  1. Dump coverage info to hash
+  2. Loop through and print each one...?
+ -->
+
+<%= policies = @account.quote_info %>
+
+<h3>Comparison</h3>
+<table>
+  <tr>
+    <th>Coverage</th>
+    <% @account.quotes.each do |quote| %>
+      <th><%= quote.policy %></th>
+    <% end %>
+  </tr>
+
+  <% @wordingalias.each do |wording| %>
+    <tr>
+      <td><%= wording.name %></td>
+      <% @account.quotes.each do |quote| %>
+        <td><%= policies[quote.policy][wording.name][:limit] if policies[quote.policy][wording.name] %></td>
+      <% end %>
+    </tr>
+  <% end %>
+
+</table>
