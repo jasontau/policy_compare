@@ -4,7 +4,9 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.all
+    @accounts = Account.where(nil)
+    @accounts = @accounts.status(params[:status]) if params[:status].present?
+    @accounts = @accounts.user_id(params[:user_id]) if params[:user_id].present?
   end
 
   # GET /accounts/1

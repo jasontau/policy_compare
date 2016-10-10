@@ -3,6 +3,9 @@ class Account < ApplicationRecord
   belongs_to :sic
   belongs_to :status
 
+  scope :status, -> (status) { where status: status }
+  scope :user_id, -> (user_id) { where user_id: user_id }
+
   has_many :quotes, dependent: :nullify
 
   # TODO: Not this... don't do this... fix please

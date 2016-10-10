@@ -62,7 +62,7 @@ end
 CUSTOMERS_TO_CREATE.times do |i|
   if Customer.count < CUSTOMERS_TO_CREATE
     customer_name = ""
-    case rand(1)
+    case rand(2)
     when 0
       customer_name = "#{Faker::Name.name} o/a #{Faker::Company.name}"
     when 1
@@ -80,6 +80,8 @@ ACCOUNTS_TO_CREATE.times do |i|
     Account.create  customer: Customer.order("RANDOM()").first,
                     sic: sic,
                     status: Status.order("RANDOM()").first,
-                    description: sic.name
+                    description: sic.name,
+                    user: User.order("RANDOM()").first,
+                    effective_date: Time.now().end_of_day + rand(365).days + 10.days
   end
 end

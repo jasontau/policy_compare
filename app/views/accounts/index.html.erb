@@ -2,31 +2,31 @@
 
 <h1>Accounts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Customer</th>
-      <th>Sic</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @accounts.each do |account| %>
-      <tr>
-        <td><%= account.description %></td>
-        <td><%= account.customer %></td>
-        <td><%= account.sic %></td>
-        <td><%= account.status %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Named Insured</th>
+                <th>SIC</th>
+                <th>Eff. Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @accounts.each do |account| %>
+            <tr>
+              <td><%= account.customer.name %></td>
+              <td><%= account.sic.code %></td>
+              <td><%= account.effective_date %></td>
+              <td><%= account.status.name %></td>
+              <td><%= link_to 'Show', account %>
+              <%= link_to 'Edit', edit_account_path(account) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+</div>
 
 <br>
 

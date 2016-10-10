@@ -1,33 +1,50 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First:</strong>
-  <%= @user.first_name %>
-</p>
-<p>
-  <strong>Last:</strong>
-  <%= @user.last_name %>
-</p>
+<h1>Dashboard</h1>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<% panels = [
+  {
+    color: "primary",
+    icon: "fa-folder",
+    number: current_user.accounts_that_are("New"),
+    text: "New Accounts!"
+  },
+  {
+    color: "yellow",
+    icon: "fa-folder-open",
+    number: current_user.accounts_that_are("Open"),
+    text: "Open Accounts!"
+  },
+  {
+    color: "green",
+    icon: "fa-check-circle-o",
+    number: current_user.accounts_that_are("Bound"),
+    text: "Bound!"
+  }] %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @user.title %>
-</p>
-
-<p>
-  <strong>Company:</strong>
-  <%= @user.company %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="row">
+  <% panels.each do |panel| %>
+    <div class="col-lg-3 col-md-6">
+      <div class="panel panel-<%= panel[:color] %>">
+          <div class="panel-heading">
+              <div class="row">
+                  <div class="col-xs-3">
+                      <i class="fa fa-5x <%= panel[:icon] %>"></i>
+                  </div>
+                  <div class="col-xs-9 text-right">
+                      <div class="huge"><%= panel[:number] %></div>
+                      <div><%= panel[:text] %></div>
+                  </div>
+              </div>
+          </div>
+          <a href="#">
+              <div class="panel-footer">
+                  <span class="pull-left">View Details</span>
+                  <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                  <div class="clearfix"></div>
+              </div>
+          </a>
+      </div>
+    </div>
+  <% end %>
+</div>

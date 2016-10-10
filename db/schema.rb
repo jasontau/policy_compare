@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007033029) do
+ActiveRecord::Schema.define(version: 20161010033012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,14 @@ ActiveRecord::Schema.define(version: 20161007033029) do
     t.integer  "customer_id"
     t.integer  "sic_id"
     t.integer  "status_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "user_id"
+    t.datetime "effective_date"
     t.index ["customer_id"], name: "index_accounts_on_customer_id", using: :btree
     t.index ["sic_id"], name: "index_accounts_on_sic_id", using: :btree
     t.index ["status_id"], name: "index_accounts_on_status_id", using: :btree
+    t.index ["user_id"], name: "index_accounts_on_user_id", using: :btree
   end
 
   create_table "coverages", force: :cascade do |t|
@@ -134,6 +137,7 @@ ActiveRecord::Schema.define(version: 20161007033029) do
   add_foreign_key "accounts", "customers"
   add_foreign_key "accounts", "sics"
   add_foreign_key "accounts", "statuses"
+  add_foreign_key "accounts", "users"
   add_foreign_key "coverages", "quotes"
   add_foreign_key "coverages", "wordings"
   add_foreign_key "quotes", "accounts"
