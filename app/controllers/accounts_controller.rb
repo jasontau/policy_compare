@@ -7,12 +7,14 @@ class AccountsController < ApplicationController
     @accounts = Account.where(nil)
     @accounts = @accounts.status(params[:status]) if params[:status].present?
     @accounts = @accounts.user_id(params[:user_id]) if params[:user_id].present?
+    @accounts = @accounts.where("user_id = ?", current_user.id).order(:status_id) if params[:owned].present?
   end
 
   # GET /accounts/1
   # GET /accounts/1.json
   def show
-    @wordingalias = WordingAlias.all
+    #TODO: group and display ALS under profits, special case
+    @wordingalias = WordingAlias.where("name != ?", "ALS")
   end
 
   # GET /accounts/new
@@ -28,6 +30,9 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
+    @account.user = current_user
+    @account.status = Status.find_by_name("New")
+
 
     respond_to do |format|
       if @account.save
@@ -72,6 +77,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:description, :customer_id, :sic_id, :status_id)
+      params.require(:account).permit(:description, :customer_id, :sic_id, :effective_date)
     end
 end

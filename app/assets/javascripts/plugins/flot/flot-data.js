@@ -3,15 +3,20 @@
 // Flot Line Chart with Tooltips
 $(document).ready(function() {
     console.log("document ready");
+    var data = $('.temp_information').data('temp')
     var offset = 0;
     plot();
 
     function plot() {
         var sin = [],
-            cos = [];
+            cos = [],
+            accounts = [];
         for (var i = 0; i < 12; i += 0.2) {
             sin.push([i, Math.sin(i + offset)]);
             cos.push([i, Math.cos(i + offset)]);
+        }
+        for (var i = 0; i <= 30; i++) {
+          accounts.push([i, data[i]])
         }
 
         var options = {
@@ -27,10 +32,10 @@ $(document).ready(function() {
                 hoverable: true //IMPORTANT! this is needed for tooltip to work
             },
             yaxis: {
-                min: -1.2,
-                max: 1.2
+                min: 0,
+                max: 6
             },
-            tooltip: true,
+            tooltip: false,
             tooltipOpts: {
                 content: "'%s' of %x.1 is %y.4",
                 shifts: {
@@ -41,11 +46,8 @@ $(document).ready(function() {
         };
 
         var plotObj = $.plot($("#flot-line-chart"), [{
-                data: sin,
-                label: "sin(x)"
-            }, {
-                data: cos,
-                label: "cos(x)"
+                data: accounts,
+                label: "Accounts Due"
             }],
             options);
     }

@@ -14,6 +14,42 @@ class User < ApplicationRecord
     accounts.where("status_id = ?", Status.find_by_name(string)).count
   end
 
+  def accounts_that_are_open
+    accounts.where("status_id = ? OR status_id = ?", Status.find_by_name("Open"), Status.find_by_name("New"))
+  end
+
+  def accounts_within num_days
+    accounts_that_are_open
+                .where("effective_date > ? AND effective_date < ?", DateTime.now, DateTime.now + num_days.days)
+                .order(:effective_date)
+  end
+
+  def accounts_for_next_month
+    d = accounts_that_are_open
+                .where("effective_date > ? AND effective_date < ?", DateTime.now, DateTime.now + 30.days)
+                .order(:effective_date)
+
+    results = {}
+    30.times do |i|
+      results[i.to_s] = 0
+    end
+
+    d.each do |record|
+      results[seconds_to_units(record.effective_date - Time.now)] ||= 0
+      results[seconds_to_units(record.effective_date - Time.now)] += 1
+    end
+    results
+  end
+
+  def seconds_to_units(seconds)
+    '%d' %
+      # the .reverse lets us put the larger units first for readability
+      [24,60,60].reverse.inject([seconds]) {|result, unitsize|
+        result[0,0] = result.shift.divmod(unitsize)
+        result
+      }
+  end
+
   private
   def set_defaults # double up defaulting admin to false
     self.admin ||= false

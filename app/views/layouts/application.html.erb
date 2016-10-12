@@ -4,8 +4,10 @@
     <title>PolicyCompare</title>
     <%= csrf_meta_tags %>
 
+    <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -19,8 +21,6 @@
         <%= render "layouts/side_nav" if user_signed_in? %>
       </nav>
         <!-- Top Nav -->
-
-
         <div id="page-wrapper">
             <div class="container-fluid" style="width:100%">
               <%= yield %>

@@ -2,7 +2,7 @@
 <% sidebar_links = {
     "Dashboard" => {class: "fa-dashboard", path: user_path(current_user)},
     "New Account" => {class: "fa-folder-open", path: new_account_path},
-    "My Accounts" => {class: "fa-folder", path: accounts_path(user_id: current_user.id, status:2)},
+    "My Accounts" => {class: "fa-folder", path: accounts_path(owned: true)},
     "Forms" => {class: "fa-edit", path: "forms.html"},
     "Elements" => {class: "fa-desktop", path: "bootstrap-elements.html"},
     "Grid" => {class: "fa-wrench", path: "bootstrap-grid.html"},

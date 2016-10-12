@@ -12,7 +12,11 @@ class Quote < ApplicationRecord
   validates :policy, presence: true
   validates :account, presence: true
 
-  def limit_for( wording_alias )
-    coverages.find_by_name
+  def get_wording_by_alias( name )
+    wordings.find_by_wording_alias_id( WordingAlias.find_by_name( name ) )
+  end
+
+  def get_coverage_by_alias( name )
+    coverages.find_by_wording_id( get_wording_by_alias(name) )
   end
 end

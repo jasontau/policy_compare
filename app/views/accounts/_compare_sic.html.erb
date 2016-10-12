@@ -1,5 +1,5 @@
 
-<h3>Summary</h3>
+<h3>Filtered Summary: <%= @account.sic.name %></h3>
 <div class="table-responsive">
     <table class="table table-bordered table-hover table-striped">
         <thead>
@@ -24,6 +24,17 @@
     </table>
 </div>
 
+<% override_list = [
+    "Building",
+    "Contents",
+    "Transit",
+    "Extra Expense",
+    "Profits",
+    "CGL",
+    "CGL Aggregate",
+    "Tools"
+  ] %>
+
 <h3>Policies</h3>
 <div class="table-responsive">
     <table class="table table-bordered table-hover table-striped">
@@ -36,7 +47,7 @@
             </tr>
         </thead>
         <tbody>
-          <% @account.get_wording_template.each do |coverage, _| %>
+          <% override_list.each do |coverage| %>
             <tr>
               <td><%= coverage %></td>
               <% policies.each do |policy, coverages| %>

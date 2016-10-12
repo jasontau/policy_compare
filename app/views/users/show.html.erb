@@ -48,3 +48,25 @@
     </div>
   <% end %>
 </div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Open Accounts Due This Month</h3>
+            </div>
+            <div class="panel-body">
+              <%= column_chart Account
+                    .group_by_day(:effective_date, range: Time.now..1.month.from_now)
+                    .where("user_id = ?", current_user.id)
+                    .count,
+                    colors: ["#f0ad4e", "#999"] %>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<%= content_tag :div, class: "temp_information", data: {temp: current_user.accounts_for_next_month} do %>
+<% end %>

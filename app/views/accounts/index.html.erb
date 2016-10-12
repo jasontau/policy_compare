@@ -16,7 +16,7 @@
         <tbody>
           <% @accounts.each do |account| %>
             <tr>
-              <td><%= account.customer.name %></td>
+              <td><%= account.customer.name if account.customer %></td>
               <td><%= account.sic.code %></td>
               <td><%= account.effective_date %></td>
               <td><%= account.status.name %></td>

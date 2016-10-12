@@ -16,12 +16,13 @@ class QuotesController < ApplicationController
     @quote = Quote.new(quote_params)
     @quote.account = @account
 
-    @test = parse @quote
-    @quote.policy = @test[:policy]
-    @quote.insurer_id = @test[:insurer]
+    extracted_data = parse @quote
+    @quote.policy = extracted_data[:policy]
+    @quote.insurer_id = extracted_data[:insurer]
+    @quote.premium = extracted_data[:premium]
 
     coverage_array = []
-    @test[:coverages].each do |x|
+    extracted_data[:coverages].each do |x|
       coverage_array << Coverage.new(x)
     end
 

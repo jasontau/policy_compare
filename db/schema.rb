@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010033012) do
+ActiveRecord::Schema.define(version: 20161010052651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20161010033012) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "policy"
+    t.integer  "premium"
     t.index ["account_id"], name: "index_quotes_on_account_id", using: :btree
     t.index ["insurer_id"], name: "index_quotes_on_insurer_id", using: :btree
   end
