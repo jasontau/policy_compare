@@ -15,7 +15,7 @@
             <tr>
               <td><%= quote.insurer.name %></td>
               <td><%= quote.policy %></td>
-              <td><%= quote.premium if quote.premium %></td>
+              <td>$<%= quote.premium if quote.premium %></td>
               <td><%= policies[quote.policy]["TIV"]
                 %></td>
             </tr>
@@ -30,6 +30,9 @@
     "Transit",
     "Extra Expense",
     "Profits",
+    "Earthquake",
+    "Flood",
+    "Sewer Back-Up",
     "CGL",
     "CGL Aggregate",
     "Tools"
@@ -51,7 +54,10 @@
             <tr>
               <td><%= coverage %></td>
               <% policies.each do |policy, coverages| %>
-                <td class="text-right" style="<%= 'background:lightgreen' if coverages[coverage][:best] %>"><%= coverages[coverage][:limit] %></td>
+
+                <td class="text-right" style="<%= 'background:lightgreen' if coverages[coverage][:best] %>">
+                  <% if coverages[coverage][:limit] %>$<%= coverages[coverage][:limit] %><% end %>
+                  <% if coverages[coverage][:deductible] %>($<%= coverages[coverage][:deductible] %> ded.)<% end %></td>
               <% end %>
             </tr>
           <% end %>

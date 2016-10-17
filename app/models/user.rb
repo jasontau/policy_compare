@@ -50,6 +50,20 @@ class User < ApplicationRecord
       }
   end
 
+  # get random sampling for now
+  def user_events
+    a = accounts.order("RANDOM()").limit(10).where("status_id = ? OR status_id = ?", 1, 3)
+    result = []
+    a.each do |record|
+      if record.status_id == 3
+        result << ["Bound", Customer.find(record.customer_id).name, record.quotes.order("RANDOM()").first.premium]
+      else
+        result << ["New", Customer.find(record.customer_id).name, record.effective_date]
+      end
+    end
+    result
+  end
+
   private
   def set_defaults # double up defaulting admin to false
     self.admin ||= false

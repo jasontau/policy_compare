@@ -117,9 +117,18 @@ class Account < ApplicationRecord
   def self.average_quote_per_day_for sic_code
     self.joins(:quotes)
       .group(:sic_id)
-      .group_by_week(:effective_date, range: 1.month.ago..1.month.from_now, format: "%d %b")
+      .group_by_week(:effective_date, range: 1.month.ago..1.month.from_now)
       .where("sic_id = ?", Sic.find_by_code(sic_code))
       .average(:premium)
+  end
+
+  def self.quote_success_rate
+    a = self.joins(:quotes).group(:status_id).count
+    result = []
+    a.each do |record|
+      record[0] = Status.find(record[0]).name; result << record
+    end
+    result
   end
 
   private

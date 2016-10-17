@@ -31,7 +31,7 @@ module Policy
   end
 
   def get_premium(quote)
-    #TODO: remove hardcoding after demo
+    #TODO: remove hardcoding
     regex = /Advance Premium:.*$|Total Policy Premium:.*$/
     CSV.foreach("public/#{quote.csv}", headers: false) do |row|
       row.each do |value|
@@ -47,7 +47,6 @@ module Policy
     wordings = []
     result = []
     Wording.where("insurer_id = ?", Insurer.find_by_name(insurer).id).each do |record|
-      # wordings << record.name
       catch :found_wording do
         CSV.foreach("public/#{quote.csv}", headers: false) do |row|
           row.each do |value|
@@ -59,7 +58,6 @@ module Policy
               throw :found_wording
             end
           end
-        # result << [wording, row]
         end
       end
     end

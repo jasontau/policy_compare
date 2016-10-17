@@ -3,9 +3,7 @@
     "Dashboard" => {class: "fa-dashboard", path: user_path(current_user)},
     "New Account" => {class: "fa-folder-open", path: new_account_path},
     "My Accounts" => {class: "fa-folder", path: accounts_path(owned: true)},
-    "Forms" => {class: "fa-edit", path: "forms.html"},
-    "Elements" => {class: "fa-desktop", path: "bootstrap-elements.html"},
-    "Grid" => {class: "fa-wrench", path: "bootstrap-grid.html"},
+    "Business Stats" => {class: "fa-edit", path: "/book" },
   } %>
 
 <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -15,22 +13,5 @@
         <%= link_to "<i class='fa fa-fw #{value[:class]} '></i> #{title}".html_safe, value[:path] %>
       </li>
     <% end %>
-    <!-- <li>
-      <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-      <ul id="demo" class="collapse">
-        <li>
-          <a href="#">Dropdown Item</a>
-        </li>
-        <li>
-          <a href="#">Dropdown Item</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-    </li>
-    <li>
-        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-    </li> -->
   </ul>
 </div>

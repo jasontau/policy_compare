@@ -1,4 +1,26 @@
-<h1>Class Metrics - <%= @account.sic.name %></h1>
+<h3>Class Metrics - <%= @account.sic.name %></h3>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Insurer</th>
+                <th>Policy</th>
+                <th>Premium</th>
+                <th>TIV</th>
+            </tr>
+        </thead>
+        <tbody class="text-right">
+          <% @account.quotes.each do |quote| %>
+            <tr>
+              <td><%= quote.insurer.name %></td>
+              <td><%= quote.policy %></td>
+              <td>$<%= quote.premium if quote.premium %></td>
+              <td><%= policies[quote.policy]["TIV"]%></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+</div>
 <p>
   <div class="">
     Premium:

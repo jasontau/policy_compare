@@ -18,7 +18,7 @@
             <tr>
               <td><%= account.customer.name if account.customer %></td>
               <td><%= account.sic.code %></td>
-              <td><%= account.effective_date %></td>
+              <td><%= account.effective_date.strftime("%Y-%B-%d") %></td>
               <td><%= account.status.name %></td>
               <td><%= link_to 'Show', account %>
               <%= link_to 'Edit', edit_account_path(account) %></td>
