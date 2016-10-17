@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Accounts</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Named Insured</th>
+                <th>SIC</th>
+                <th>Eff. Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @accounts.each do |account| %>
+            <tr>
+              <td><%= account.customer.name if account.customer %></td>
+              <td><%= account.sic.code %></td>
+              <td><%= account.effective_date.strftime("%Y-%B-%d") %></td>
+              <td><%= account.status.name %></td>
+              <td><%= link_to 'Show', account %>
+              <%= link_to 'Edit', edit_account_path(account) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+</div>
+
+<br>
+
+<%= link_to 'New Account', new_account_path %>

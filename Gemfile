@@ -56,6 +56,11 @@ gem 'kaminari'
 gem 'chosen-rails'
 gem 'compass-rails'
 
+# Charting
+gem 'chartkick'
+gem 'groupdate'
+gem 'active_median', '~> 0.1.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

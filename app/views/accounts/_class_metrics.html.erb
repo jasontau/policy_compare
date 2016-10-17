@@ -1,0 +1,45 @@
+<h3>Class Metrics - <%= @account.sic.name %></h3>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Insurer</th>
+                <th>Policy</th>
+                <th>Premium</th>
+                <th>TIV</th>
+            </tr>
+        </thead>
+        <tbody class="text-right">
+          <% @account.quotes.each do |quote| %>
+            <tr>
+              <td><%= quote.insurer.name %></td>
+              <td><%= quote.policy %></td>
+              <td>$<%= quote.premium if quote.premium %></td>
+              <td><%= policies[quote.policy]["TIV"]%></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+</div>
+<p>
+  <div class="">
+    Premium:
+  </div>
+
+  <% @account.quotes.each do |quote|%>
+    <div><%= "#{quote.premium} " %></div>
+  <% end %>
+</p>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Average Premium: <%= @account.sic.name %> (30 days)</h3>
+            </div>
+            <div class="panel-body">
+              <%= line_chart Account.average_quote_per_day_for(@account.sic.code), label: "Value", xtitle: "Date", ytitle: "Average Premium"%>
+            </div>
+        </div>
+    </div>
+</div>

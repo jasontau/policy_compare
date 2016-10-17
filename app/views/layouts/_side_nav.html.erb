@@ -1,0 +1,17 @@
+<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+<% sidebar_links = {
+    "Dashboard" => {class: "fa-dashboard", path: user_path(current_user)},
+    "New Account" => {class: "fa-folder-open", path: new_account_path},
+    "My Accounts" => {class: "fa-folder", path: accounts_path(owned: true)},
+    "Business Stats" => {class: "fa-edit", path: "/book" },
+  } %>
+
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+  <ul class="nav navbar-nav side-nav">
+    <% sidebar_links.each do |title, value| %>
+      <li>
+        <%= link_to "<i class='fa fa-fw #{value[:class]} '></i> #{title}".html_safe, value[:path] %>
+      </li>
+    <% end %>
+  </ul>
+</div>

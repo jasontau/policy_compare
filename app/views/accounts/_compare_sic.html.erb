@@ -1,0 +1,66 @@
+
+<h3>Filtered Summary: <%= @account.sic.name %></h3>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Insurer</th>
+                <th>Policy</th>
+                <th>Premium</th>
+                <th>TIV</th>
+            </tr>
+        </thead>
+        <tbody class="text-right">
+          <% @account.quotes.each do |quote| %>
+            <tr>
+              <td><%= quote.insurer.name %></td>
+              <td><%= quote.policy %></td>
+              <td>$<%= quote.premium if quote.premium %></td>
+              <td><%= policies[quote.policy]["TIV"]
+                %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+</div>
+
+<% override_list = [
+    "Building",
+    "Contents",
+    "Transit",
+    "Extra Expense",
+    "Profits",
+    "Earthquake",
+    "Flood",
+    "Sewer Back-Up",
+    "CGL",
+    "CGL Aggregate",
+    "Tools"
+  ] %>
+
+<h3>Policies</h3>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Coverage</th>
+                <% policies.each do |policy, coverages| %>
+                  <th><%= policy %></th>
+                <% end %>
+            </tr>
+        </thead>
+        <tbody>
+          <% override_list.each do |coverage| %>
+            <tr>
+              <td><%= coverage %></td>
+              <% policies.each do |policy, coverages| %>
+
+                <td class="text-right" style="<%= 'background:lightgreen' if coverages[coverage][:best] %>">
+                  <% if coverages[coverage][:limit] %>$<%= coverages[coverage][:limit] %><% end %>
+                  <% if coverages[coverage][:deductible] %>($<%= coverages[coverage][:deductible] %> ded.)<% end %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+</div>

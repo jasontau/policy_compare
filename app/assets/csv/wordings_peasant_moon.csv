@@ -1,0 +1,48 @@
+form,name,verbiage,insurer,section,wording_alias
+604600-10,Building,,Peasant Moon Insurance,property,Building
+604700-14,Stock,,Peasant Moon Insurance,property,Contents
+,Equipment ,,Peasant Moon Insurance,property,Contents
+,Exterior Paving,,Peasant Moon Insurance,property,null
+600420-03,Replacement Cost Endorsement,,Peasant Moon Insurance,property,null
+102790-01,Privacy Breach Expense,,Peasant Moon Insurance,property,Privacy Breach
+102890-01,Statutory Conditions,,Peasant Moon Insurance,statutory conditions,null
+650708-02,Flood Endorsement,,Peasant Moon Insurance,property,Flood
+650712-03,Sewer Back-up Coverage Endorsement,,Peasant Moon Insurance,property,Sewer Back-Up
+405900-07,Earthquake Shock Endorsement,,Peasant Moon Insurance,property,Earthquake
+305998-22,Deluxe Plus Endorsement,,Peasant Moon Insurance,property,null
+,Transit,,Peasant Moon Insurance,property,Transit
+302445-02,Extended Business Income,,Peasant Moon Insurance,business interruption,Profits
+303742-03,General Policy Conditions,,Peasant Moon Insurance,statutory conditions,null
+303799-03,Backing up of Sewers Endorsement,,Peasant Moon Insurance,business interruption,null
+303723-01,Flood Insurance Endorsement,,Peasant Moon Insurance,business interruption,null
+303619-07,Earthquake Shock - Business Income,,Peasant Moon Insurance,business interruption,null
+0999AR-01,Fungi and Fungal Derivatives Exclusion,,Peasant Moon Insurance,business interruption,null
+1800AR-45,Data and Dishonest Acts Exclusion,,Peasant Moon Insurance,property,null
+1802AR-02,Terrorism Exclusion Endorsement,,Peasant Moon Insurance,property,null
+900000-03,Employee Dishonesty Form A,,Peasant Moon Insurance,crime,Crime
+,Loss Inside,,Peasant Moon Insurance,crime,null
+,Loss Outside,,Peasant Moon Insurance,crime,null
+,Money Order and Counterfeit Paper,,Peasant Moon Insurance,crime,null
+,Depositors Forgery,,Peasant Moon Insurance,crime,null
+3000RP-03,Data Exclusion Endorsement,,Peasant Moon Insurance,crime,null
+780023-02,Comprehensive Extra,,Peasant Moon Insurance,equipment breakdown,null
+,Expediting Expenses,,Peasant Moon Insurance,equipment breakdown,null
+,Hazardous Substances,,Peasant Moon Insurance,equipment breakdown,null
+,Professional Fees,,Peasant Moon Insurance,equipment breakdown,null
+,Ammonia Contamination,,Peasant Moon Insurance,equipment breakdown,null
+,Water Escape,,Peasant Moon Insurance,equipment breakdown,null
+,Data and Media,,Peasant Moon Insurance,equipment breakdown,null
+,Property Valuation: Replacement Cost,,Peasant Moon Insurance,equipment breakdown,null
+780045-07,Consequential Damage,,Peasant Moon Insurance,equipment breakdown,Consequential Damage
+780022-01,Extra Expense,,Peasant Moon Insurance,equipment breakdown,Extra Expense
+780033-01,Extended Business Income,,Peasant Moon Insurance,equipment breakdown,null
+780055-03,Service Interruption,,Peasant Moon Insurance,equipment breakdown,null
+780056-04,CGL Each Occurrence Limit,,Peasant Moon Insurance,liability,CGL
+,Personal and Advertising Injury,,Peasant Moon Insurance,liability,null
+,Medical Expense,,Peasant Moon Insurance,liability,null
+,General Aggregate Limit,,Peasant Moon Insurance,liability,CGL Aggregate
+,Products - Complete Operations Aggregate,,Peasant Moon Insurance,liability,Products Completed
+,Coverage A Per Occurrence Deductible,,Peasant Moon Insurance,liability,null
+446002-01,Non-Owned Automobile SPF #6,,Peasant Moon Insurance,liability,NOA
+446003-01,SEF No. 99,,Peasant Moon Insurance,liability,null
+446005-01,SEF No. 94,,Peasant Moon Insurance,liability,null

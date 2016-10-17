@@ -1,39 +1,56 @@
-form,name,verbiage,insurer,section,equivalent_wording_id
-BF02,Building and/or Contents,,Fintact Insurance,property,
-BF02-p01,Blanket Glass,,Fintact Insurance,property,
-BF02-p02,Inflation Protection,,Fintact Insurance,property,
-BF02-p03,Newly Acquired Buildings,,Fintact Insurance,property,
-BF02-p04,Stated Amount - Waiver of Co-Insurance,,Fintact Insurance,property,
-BF02-p05,Fire Department Service Charges,,Fintact Insurance,property,
-BF02-p06,Master Key Coverage,,Fintact Insurance,property,
-BF02-p07,Outdoor Signs,,Fintact Insurance,property,
-BF02-p08,Professional Fees,,Fintact Insurance,property,
-BF02-p09,Replacement Cost,,Fintact Insurance,property,
-BF02-p10,Accounts Receivable,,Fintact Insurance,property,
-BF02-p11,Contents at Newly Acquired Locations,,Fintact Insurance,property,
-BF02-p12,Contents at Unnamed Locations,,Fintact Insurance,property,
-BF02-p13,Stock Spoilage,,Fintact Insurance,property,
-BF02-p14,Courier and Parcel Post,,Fintact Insurance,property,
-BF02-p15,Computer Equipment,,Fintact Insurance,property,
-BF02-p16,Exhibition Floater,,Fintact Insurance,property,
-BF02-p17,Installation Floater,,Fintact Insurance,property,
-BF02-p18,25% Peak Season Increase,,Fintact Insurance,property,
-BF02-p19,Personal Property of Officers and Employees,,Fintact Insurance,property,
-BF02-p20,Valuable Papers and Records,,Fintact Insurance,property,
-BF02-p21,Fine Arts,,Fintact Insurance,property,
-BF02-p22,Land and Water Pollution Cleanup,,Fintact Insurance,property,
-BF02-p23,"Roadways Walkways, Parking Lots",,Fintact Insurance,property,
-BF02-p24,"Growing Plants, Trees, Shrubs or Flowers",,Fintact Insurance,property,
-BF02-p25,Automatic Fire Suppression Recharge Expense,,Fintact Insurance,property,
-BF02-p26,Arson Reward,,Fintact Insurance,property,
-BF02-p27,Brands and Labels,,Fintact Insurance,property,
-BF02-p28,Catch All Clause,,Fintact Insurance,property,
-BF02-p29,"Contents Leased, Rented or Loaned",,Fintact Insurance,property,
-BF02-p30,Deferred Payment Plan Stock,,Fintact Insurance,property,
-BF02-p31,Expediting Expenses,,Fintact Insurance,property,
-BF02-p32,Proof of Loss Preparation Costs,,Fintact Insurance,property,
-BF02-p33,Tool Floater,,Fintact Insurance,property,
-BF02-b01,Profits and/or Rental Income,,Fintact Insurance,business interruption,
-BF02-b02,Extra Expense,,Fintact Insurance,business interruption,
-BF02-b03,Mortgage Rate Guarantee,,Fintact Insurance,business interruption,
-BF01,60 Days’ Notice of Cancellation/Termination,,Fintact Insurance,statutory conditions,
+form,name,verbiage,insurer,section,wording_alias
+BF02,Commercial Building & Contents Broad Form,,Fintact Insurance,property,Building
+BF03-04,Equipment Breakdown Rider,,Fintact Insurance,equipment breakdown,Equipment Breakdown
+BF05-02,Earthquake Shock Endorsement,,Fintact Insurance,property,Earthquake
+BF05b-03,Flood Endorsement,,Fintact Insurance,property,Flood
+BF02-c03,Sewer Back Up Endorsement,,Fintact Insurance,property,Sewer Back-Up
+BF02-b17,Building By-Laws,,Fintact Insurance,property,null
+BF02-p01,Blanket Glass,,Fintact Insurance,property,null
+BF02-p02,Inflation Protection,,Fintact Insurance,property,null
+BF02-p03,Newly Acquired Buildings,,Fintact Insurance,property,null
+BF02-p04,Stated Amount - Waiver of Co-Insurance,,Fintact Insurance,property,null
+BF02-p05,Service Charges,,Fintact Insurance,property,null
+BF02-p06,Master Key Coverage,,Fintact Insurance,property,null
+BF02-p07,Outdoor Signs,,Fintact Insurance,property,null
+BF02-p08,Professional Fees,,Fintact Insurance,property,null
+BF02-p09,Replacement Cost,,Fintact Insurance,property,null
+BF02-p10,Accounts Receivable,,Fintact Insurance,property,null
+BF02-p11,Contents at Newly Acquired Locations,,Fintact Insurance,property,null
+BF02-p12,Contents at Unnamed Locations,,Fintact Insurance,property,null
+BF02-p13,Stock Spoilage,,Fintact Insurance,property,Spoilage
+BF02-p14,Courier and Parcel Post,,Fintact Insurance,property,null
+BF02-p15,Computer Equipment,,Fintact Insurance,property,null
+BF02-p16,Exhibition Floater,,Fintact Insurance,property,null
+BF02-p17,Installation Floater,,Fintact Insurance,property,null
+BF02-p18,25% Peak Season Increase,,Fintact Insurance,property,null
+BF02-p19,Personal Property of Officers and Employees,,Fintact Insurance,property,null
+BF02-x22,Sales Samples,,Fintact Insurance,property,null
+BF02-x23,Property in Transit,,Fintact Insurance,property,Transit
+BF02-p20,Valuable Papers and Records,,Fintact Insurance,property,null
+BF02-p21,Fine Arts,,Fintact Insurance,property,null
+BF02-p22,Land and Water Pollution Cleanup,,Fintact Insurance,property,null
+BF02-p23,"Roadways Walkways, Parking Lots",,Fintact Insurance,property,null
+BF02-p24,"Growing Plants, Trees, Shrubs or Flowers",,Fintact Insurance,property,null
+BF02-p25,Suppression Recharge Expense,,Fintact Insurance,property,null
+BF02-p26,Arson Reward,,Fintact Insurance,property,null
+BF02-p27,Brands and Labels,,Fintact Insurance,property,null
+BF02-p28,Catch All Clause,,Fintact Insurance,property,null
+BF02-p29,"Contents Leased, Rented or Loaned",,Fintact Insurance,property,null
+BF02-p30,Deferred Payment Plan Stock,,Fintact Insurance,property,null
+BF02-p31,Expediting Expenses,,Fintact Insurance,property,null
+BF02-p32,Proof of Loss Preparation Costs,,Fintact Insurance,property,null
+BF02-p33,Tool Floater,,Fintact Insurance,property,Tools
+BF02-b01,Profits and/or Rental Income,,Fintact Insurance,business interruption,ALS
+BF02-b02,Extra Expense,,Fintact Insurance,business interruption,Extra Expense
+BF02-b03,Mortgage Rate Guarantee,,Fintact Insurance,business interruption,null
+BF01,60 Days’ Notice of Cancellation/Termination,,Fintact Insurance,statutory conditions,null
+LF01-01,Bodily Injury and Property Damage Liability,,Fintact Insurance,liability,CGL
+LF02-01,General Aggregate Limit,,Fintact Insurance,liability,CGL Aggregate
+LF03-01,Products Completed Operations,,Fintact Insurance,liability,Products Completed
+LF04-01,Personal Injury and Advertising Injury Liability,,Fintact Insurance,liability,null
+LF05-02,Medical Payments,,Fintact Insurance,liability,null
+LF06-04,Tenants’ Legal Liability Edge Plus,,Fintact Insurance,liability,TLL
+LFX004-02,The Commercial Edge Plus Coverage Endorsement,,Fintact Insurance,liability,null
+LFA48-02,Limited Fungi or Spores Coverage Extension,,Fintact Insurance,liability,null
+LF07-04,SPF#6 - Supplementary Non-Owned Automobile Coverage,,Fintact Insurance,liability,null
+LF08-23,SEF#94 - Legal Liability for Damage to Hired Automobiles,,Fintact Insurance,liability,null
