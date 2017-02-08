@@ -1,0 +1,1 @@
+ENV["PDF_TABLES_KEY"] = "valid key"
