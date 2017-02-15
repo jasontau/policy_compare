@@ -59,7 +59,8 @@ class QuotesController < ApplicationController
     # p @quote.csv
     # p quote_params
     # p "**************  END "
-    response = HTTMultiParty.post("https://pdftables.com/api?key=#{ENV["PDF_TABLES_KEY"]}&format=csv", :query => { f: File.new("app/assets/policies/raw/PeasantMoonQuote.pdf", "r") })
+    # response = HTTMultiParty.post("https://pdftables.com/api?key=#{ENV["PDF_TABLES_KEY"]}&format=csv", :query => { f: File.new("app/assets/policies/raw/PeasantMoonQuote.pdf", "r") })
+    response = File.read('app/assets/policies/raw/pm_pdftables.csv')
     file = Tempfile.new(['temp','.csv'])
     File.open(file.path, 'w') do |f|
       f.puts response
