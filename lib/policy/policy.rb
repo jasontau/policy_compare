@@ -11,6 +11,22 @@ module Policy
     }
   end
 
+  def convert_to_csv(pdf)
+    # Send and retrieve file from PDFTables API
+    response = HTTMultiParty.post("https://pdftables.com/api?key=#{ENV["PDF_TABLES_KEY"]}&format=csv",
+      :query => { f: File.new(pdf.path(), "r") })
+    # Test line - does not use up conversion license
+    # response = File.read('app/assets/policies/raw/pm_pdftables.csv')
+
+    csv = Tempfile.new(['temp','.csv'])
+    File.open(csv.path, 'w') do |f|
+      f.puts response
+    end
+    csv.rewind
+
+    return csv
+  end
+
   private
   def get_insurer(quote)
     #TODO: move to database, find different identifier?

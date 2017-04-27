@@ -15,36 +15,15 @@ class QuotesController < ApplicationController
     @quote = Quote.find params[:id]
   end
 
-  def download_zip
-    send_data "app/assets/policies/raw/PeasantMoonQuote.pdf.zip",
-      :filename => "PeasantMoonQuote.pdf.zip",
-      :type => "application/zip"
-
-  end
-
   # upload the pdf/csv raw data
   def create
     # render json: @quote
     @quote = Quote.new params.require(:quote).permit(:pdf)
-
-    # p "************** // "+quote_params[:pdf].path()
-    # Send and retrieve file from PDFTables API
-    response = HTTMultiParty.post("https://pdftables.com/api?key=#{ENV["PDF_TABLES_KEY"]}&format=csv",
-      :query => { f: File.new(quote_params[:pdf].path(), "r") })
-    # response = File.read('app/assets/policies/raw/pm_pdftables.csv')
-
-    file = Tempfile.new(['temp','.csv'])
-    File.open(file.path, 'w') do |f|
-      f.puts response
-    end
-    file.rewind
-
     @quote = Quote.new(quote_params)
-    @quote.csv = file
 
+    csv = convert_to_csv(quote_params[:pdf])
+    @quote.csv = csv
     @quote.account = @account
-
-    p "*******************" + quote_params.to_s
 
     extracted_data = parse @quote
     @quote.policy = extracted_data[:policy]
@@ -52,21 +31,20 @@ class QuotesController < ApplicationController
     @quote.premium = extracted_data[:premium]
 
     coverage_array = []
-    extracted_data[:coverages].each do |x|
-      coverage_array << Coverage.new(x)
+    extracted_data[:coverages].each do |cover|
+      coverage_array << Coverage.new(cover)
     end
 
     @quote.coverages = coverage_array
 
     if @quote.save
-      file.close
+      csv.close
       redirect_to @account, notice: 'Quote was successfully created.'
     else
       render :new
     end
   end
 
-  # extract and interpret useful info into coverages
   def edit
 
   end
