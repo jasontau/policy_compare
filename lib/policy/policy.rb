@@ -11,6 +11,22 @@ module Policy
     }
   end
 
+  def convert_to_csv(pdf)
+    # Send and retrieve file from PDFTables API
+    response = HTTMultiParty.post("https://pdftables.com/api?key=#{ENV["PDF_TABLES_KEY"]}&format=csv",
+      :query => { f: File.new(pdf.path(), "r") })
+    # Test line - does not use up conversion license
+    # response = File.read('app/assets/policies/raw/pm_pdftables.csv')
+
+    csv = Tempfile.new(['temp','.csv'])
+    File.open(csv.path, 'w') do |f|
+      f.puts response
+    end
+    csv.rewind
+
+    return csv
+  end
+
   private
   def get_insurer(quote)
     #TODO: move to database, find different identifier?
@@ -31,7 +47,7 @@ module Policy
   end
 
   def get_premium(quote)
-    #TODO: remove hardcoding
+    #TODO: remove hardcoding after demo
     regex = /Advance Premium:.*$|Total Policy Premium:.*$/
     CSV.foreach("public/#{quote.csv}", headers: false) do |row|
       row.each do |value|
@@ -47,6 +63,7 @@ module Policy
     wordings = []
     result = []
     Wording.where("insurer_id = ?", Insurer.find_by_name(insurer).id).each do |record|
+      # wordings << record.name
       catch :found_wording do
         CSV.foreach("public/#{quote.csv}", headers: false) do |row|
           row.each do |value|
@@ -58,6 +75,7 @@ module Policy
               throw :found_wording
             end
           end
+        # result << [wording, row]
         end
       end
     end
