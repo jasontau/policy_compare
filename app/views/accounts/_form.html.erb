@@ -1,4 +1,4 @@
-<%= form_for(account) do |f| %>
+<%= simple_form_for(account) do |f| %>
   <% if account.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
@@ -11,25 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
+  <%= f.input :description %>
+  <%= f.input :customer_id, collection: Customer.all.order("name"), prompt: "Select Customer" %>
+  <%= f.input :sic_id, collection: Sic.all.order("name"), prompt: "Select SIC Code" %>
+  <%= f.input :effective_date %>
 
-  <div class="field">
-    <%= f.label :customer_id %>
-    <%= f.text_field :customer_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :sic_id %>
-    <%= f.text_field :sic_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :status_id %>
-    <%= f.text_field :status_id %>
-  </div>
 
   <div class="actions">
     <%= f.submit %>

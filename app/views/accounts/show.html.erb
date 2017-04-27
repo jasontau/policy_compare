@@ -1,13 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @account.customer.name %></h1>
+
 <p>
   <strong>Description:</strong>
   <%= @account.description %>
-</p>
-
-<p>
-  <strong>Customer:</strong>
-  <%= @account.customer.name %>
 </p>
 
 <p>
@@ -22,39 +19,58 @@
 
 <hr>
 
+<% policies = @account.get_prioritized_quotes %>
+
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#quotes">Quotes</a></li>
-  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-  <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
   <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu 1
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Compare
     <span class="caret"></span></a>
     <ul class="dropdown-menu">
-      <li><a data-toggle="tab" href="#submenu1-1">Submenu 1-1</a></li>
+      <li><a data-toggle="tab" href="#compare">Full</a></li>
+      <li><a data-toggle="tab" href="#compare-sic">By Class</a></li>
     </ul>
   </li>
+  <li><a data-toggle="tab" href="#class-metrics">Metrics</a></li>
+  <!-- <li><a data-toggle="tab" href="#compare-sic">Class-Specific</a></li> -->
+
 </ul>
 
 <div class="tab-content">
   <div id="quotes" class="tab-pane fade in active">
-    <% @account.quotes.each do |quote| %>
-      <div><%= link_to "", account_quote_path(@account, quote), class: "glyphicon glyphicon-file", style: "color:red; font-size: 2.0em"%></span></div>
-    <% end %>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Quote</th>
+                    <th>Insurer</th>
+                    <th>Received at</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+              <% @account.quotes.each do |quote| %>
+                <tr>
+                  <td><%= link_to "", account_quote_path(@account, quote), class: "glyphicon glyphicon-file", style: "color:red; font-size: 2.0em"%></span></td>
+                  <td><%= quote.insurer.name %></td>
+                  <td><%= quote.created_at.strftime("%Y-%B-%d") %></td>
+                  <td></td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+    </div>
   </div>
-  <div id="menu1" class="tab-pane fade">
-    <h3>Compare</h3>
-    <p>Some content in menu 1.</p>
+  <div id="compare" class="tab-pane fade">
+    <%= render "compare", policies: policies %>
   </div>
-  <div id="menu2" class="tab-pane fade">
-    <h3>Menu 2</h3>
-    <p>Some content in menu 2.</p>
+  <div id="compare-sic" class="tab-pane fade">
+    <%= render "compare_sic", policies: policies %>
   </div>
-  <div id="submenu1-1" class="tab-pane fade">
-    <%= render "compare" %>
+  <div id="class-metrics" class="tab-pane fade">
+    <%= render "class_metrics", policies: policies %>
   </div>
 </div>
-
-
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'New Quote', new_account_quote_path(@account) %> |

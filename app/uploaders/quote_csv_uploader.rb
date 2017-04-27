@@ -1,4 +1,4 @@
-class QuoteCsvUploader < CarrierWave::Uploader::Base
+  class QuoteCsvUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
