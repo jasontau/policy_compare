@@ -5,7 +5,7 @@ class QuotesController < ApplicationController
   require 'json'
   require 'zip'
 
-  include Policy
+  include Policy # lib/policy/policy.rb
 
   def new
     @quote = Quote.new
@@ -24,43 +24,15 @@ class QuotesController < ApplicationController
 
   # upload the pdf/csv raw data
   def create
-    # response = HTTP.post("https://pdftables.com/api?key=#{ENV["PDF_TABLES_KEY"]}&format=csv",
-    #                   form: {
-    #                     :f   => HTTP::FormData::File.new(quote_params[:pdf].tempfile)
-    #                     })
-
-
     # render json: @quote
+    @quote = Quote.new params.require(:quote).permit(:pdf)
 
-    # @quote.csv = Pathname.new("app/assets/policies/rendered/PeasantMoonQuote.csv").open
+    # p "************** // "+quote_params[:pdf].path()
+    # Send and retrieve file from PDFTables API
+    response = HTTMultiParty.post("https://pdftables.com/api?key=#{ENV["PDF_TABLES_KEY"]}&format=csv",
+      :query => { f: File.new(quote_params[:pdf].path(), "r") })
+    # response = File.read('app/assets/policies/raw/pm_pdftables.csv')
 
-    # Zip::File.open(response.body) do |zipfile|
-    #   zipfile.each do |entry|
-    #     extension = File.extname(entry.name)
-    #     basename = File.basename(entry.name, extension)
-    #
-    #     tempfile = Tempfile.new([basename, extension])
-    #     tempfile.binmode
-    #     tempfile.write entry.get_input_stream.read
-    #     tempfile.rewind
-    #
-    #     quote_params["csv"].tempfile = tempfile
-    #     quote_params["csv"].original_filename = entry.name
-        # csv_params = quote_params[:pdf]
-        # p csv_params
-        # csv_file = ActionDispatch::Http::UploadedFile.new(csv_params)
-        #
-        # p csv_file
-        # @quote.csv = csv_file
-    #   end
-    # end
-
-    p "**************  22 "
-    # p @quote.csv
-    # p quote_params
-    # p "**************  END "
-    # response = HTTMultiParty.post("https://pdftables.com/api?key=#{ENV["PDF_TABLES_KEY"]}&format=csv", :query => { f: File.new("app/assets/policies/raw/PeasantMoonQuote.pdf", "r") })
-    response = File.read('app/assets/policies/raw/pm_pdftables.csv')
     file = Tempfile.new(['temp','.csv'])
     File.open(file.path, 'w') do |f|
       f.puts response
@@ -72,7 +44,7 @@ class QuotesController < ApplicationController
 
     @quote.account = @account
 
-    p "*******************"
+    p "*******************" + quote_params.to_s
 
     extracted_data = parse @quote
     @quote.policy = extracted_data[:policy]
